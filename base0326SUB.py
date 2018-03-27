@@ -182,23 +182,6 @@ def shop_fenduan(data):
     return data
 
 
-def remove_outlier(data):
-    print('去掉在train中只出现一次，在test中没有出现过的shop id(根据EDA一共有429个')
-    trainid = {}
-    testid = {}
-    for idd in train.shop_id.values:
-        trainid[idd] = trainid.get(idd, 0) + 1
-    for idd in test.shop_id.values:
-        testid[idd] = testid.get(idd, 0) + 1
-    trainid1 = []
-    for key in trainid:
-        if trainid[key] == 1:
-            if testid.get(key, 0) == 0:
-                trainid1.append(key)
-    data = data[~data.shop_id.isin(trainid1)]
-    return data
-
-
 def slide_cnt(data):
     # item_cnt = data.groupby(by='item_id').count()['instance_id'].to_dict()
     # data['item_cnt'] = data['item_id'].apply(lambda x: item_cnt[x])
@@ -583,7 +566,6 @@ if __name__ == "__main__":
     data = base_process(data)
     data=shijian(data)
     data=shop_fenduan(data)
-    data=remove_outlier(data)
     data = slide_cnt(data)
     data = zuhe(data)
     print('----------------------------全局统计特征---------------------------------------------------')
