@@ -1,3 +1,23 @@
+have done:
+
+1.时间处理，转化为真实时间，将小时进行分段映射。
+
+2.组合特征，例如 item sales level 和  price level的组合
+
+3.组合特征的统计，例如一个user浏览过多少item,item brand等。
+
+4.shop中的连续特征离散化。并进行组合
+
+to do:
+
+1.组合特征及全局统计特征根据业务逻辑进行优化
+
+2.根据hour map添加时间特征
+
+3.类别特征
+
+4.巴拉巴拉
+
 import pandas as pd
 import numpy as np
 import lightgbm as lgb
